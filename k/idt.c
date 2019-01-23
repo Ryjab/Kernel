@@ -2,6 +2,7 @@
 #include <k/types.h>
 #include "io.h"
 #include "kbqueue.h"
+#include "pit.h"
 
 struct idte idt[256];
 struct idt_r idtr;
@@ -98,7 +99,6 @@ void idt_set(u16 segsel, u32 offset, u8 mbity, struct idte* midt)
 }
 
 
-
 void idt_init()
 {
 	idtr.base = (u32) idt;
@@ -110,6 +110,7 @@ void idt_init()
 	init_pic();	
 	//irq0 - PIT
 	idt_set(0x08, (u32) asmfuncirq[0], INTBITYP, &idt[32]);
+	timer_init(100);
 	enable_interrupt(0);
 	//irq1 - keyboard
 	idt_set(0x08, (u32) asmfuncirq[1], INTBITYP, &idt[33]);

@@ -1,4 +1,5 @@
 #include "io.h"
+#include "pit.h"
 
 void timer_init(int hz)
 	{

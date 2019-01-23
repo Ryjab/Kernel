@@ -2,8 +2,9 @@
 #include "io.h"
 #include "keyboard.h"
 #include "kbqueue.h"
+#include "gettick.h"
 
-int ticks = 0;
+unsigned long ticks = 0;
 
 void divide_0()
 {
@@ -24,9 +25,13 @@ void breakpoint()
 
 void pit()
 {
-	//init les interruptions irq0
 	ticks++;
-	//printf("timer\n");	
+	//printf("timer\n");
+}
+
+unsigned long gettick(void)
+{
+	return ticks;
 }
 
 void keyboard()
