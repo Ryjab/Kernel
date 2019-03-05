@@ -73,6 +73,8 @@ extern void __asm_isr31();
 
 extern void __asm_irq32();
 extern void __asm_irq33();
+extern void __asm_irq46();
+extern void __asm_irq47();
 
 
 #endif

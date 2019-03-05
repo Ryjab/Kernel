@@ -44,7 +44,7 @@ void keyboard()
 	{
 		//printf("lettre appuyée %c \n", (kbdus[scancode]));
 		if (!putkey(kbdus[scancode]))
-			printf("%s\n", "full mamen");
+			printf("%s\n", "buffer full");
 	}
 }
 
@@ -64,7 +64,7 @@ void general_handler(struct regs* r)
 				break;
 			case 3 :
 				breakpoint();
-				break;
+				break;				
 			default :
 				printf("error, interruption : %d\n", r->int_no);
 		}
@@ -79,6 +79,14 @@ void general_handler(struct regs* r)
 			case 33:
 				keyboard();
 				break;
+			case 46 :
+				D_primaire();
+				break;
+			case 47 :
+				D_secondaire();
+				break
+			default :
+				printf("error, interruption : %%d\n", r->int_no);
 		}
 	}
 }

@@ -87,6 +87,8 @@ void (*asmfuncisr[32])(void) = {
 void (*asmfuncirq[2])(void) = {
 	__asm_irq32,
 	__asm_irq33
+	__asm_irq46
+	__asm_irq47
 };
 
 void idt_set(u16 segsel, u32 offset, u8 mbity, struct idte* midt)
@@ -110,11 +112,19 @@ void idt_init()
 	init_pic();	
 	//irq0 - PIT
 	idt_set(0x08, (u32) asmfuncirq[0], INTBITYP, &idt[32]);
+	//init tic with 100hrz
 	timer_init(100);
 	enable_interrupt(0);
+	
 	//irq1 - keyboard
 	idt_set(0x08, (u32) asmfuncirq[1], INTBITYP, &idt[33]);
 	enable_interrupt(1);
+
+	idt_set(0x08, (u32) asmfuncirq[14], INTBITYP, &idt[46]);
+	enable_interrupt(14);
+
+	idt_set(0x08, (u32) asmfuncirq[15], INTBITYP, &idt[47]);
+	enable_interrupt(15);
 	
 	asm volatile("lidt %0\n"
 			 :/* no output */
