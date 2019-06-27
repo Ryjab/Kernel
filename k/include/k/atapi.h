@@ -84,4 +84,21 @@ struct SCSI_packet {
 	u8 control;
 } __packed;
 
+
+//only doing inb  and check status
+void busy_wait(u16 drive);
+void wait_device_selection(u16 drive);
+void wait_packet_request(u16 drive);
+
+
+//discover atapi device
+void select_drive(u16 bus, u8 slave);
+bool is_atapi_drive(u16 bus, u8 slave);
+void discover_atapi_drive();
+
+
+// functions to read data on the drive
+int send_packet(struct SCSI_packet *pkt, u16 drive, u16 size);
+void *read_block(size_t lba);
+
 #endif /* !ATAPI_H_ */

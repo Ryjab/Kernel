@@ -28,8 +28,10 @@ __asm_common_irq:
 	pop %fs
 	pop %es
 	pop %ds
-	movb $0x20, %al
-	outb %al, $0x20
+	popa
+	add $8, %esp 
+	iret
+__end:
 	popa
 	add $8, %esp 
 	iret

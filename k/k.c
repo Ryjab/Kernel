@@ -38,7 +38,6 @@ void k_main(unsigned long magic, multiboot_info_t *info)
 	gdt_all();
 	idt_init();
 	//gdt_prettyprint();
-
 	undermain();
 }
 

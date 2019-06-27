@@ -48,6 +48,17 @@ void keyboard()
 	}
 }
 
+
+
+void D_primaire(){
+
+}
+
+void D_secondaire()
+{
+	
+}
+
 void general_handler(struct regs* r)
 {
 	if (r->int_no < 32)
@@ -81,13 +92,16 @@ void general_handler(struct regs* r)
 				break;
 			case 46 :
 				D_primaire();
+				outbp(0xA0, 0x20);
 				break;
 			case 47 :
 				D_secondaire();
-				break
+				outbp(0xA0, 0x20);
+				break;
 			default :
 				printf("error, interruption : %%d\n", r->int_no);
 		}
+		outbp(0x20, 0x20);
 	}
 }
 

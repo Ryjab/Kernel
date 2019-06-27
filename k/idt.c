@@ -86,8 +86,8 @@ void (*asmfuncisr[32])(void) = {
 
 void (*asmfuncirq[2])(void) = {
 	__asm_irq32,
-	__asm_irq33
-	__asm_irq46
+	__asm_irq33,
+	__asm_irq46,
 	__asm_irq47
 };
 
