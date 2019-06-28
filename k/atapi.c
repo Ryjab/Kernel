@@ -24,26 +24,28 @@ void wait_packet_request(u16 drive)
 }
 
 
-/* */
+/* Link the drive with the reg to manipulate it */
 void select_drive(u16 bus, u8 slave)
 {
 }
-/* */
+/* Check with memcmp the correct structure of the drive */
 bool is_atapi_drive(u16 bus, u8 slave)
 {
 	return 0;
 }
-/* */
+/** Main function:
+ * For each drive found, check if it is one and save it to the reg
+ **/
 void discover_atapi_drive()
 {
 }
 
-/* */
+/* send the SCSI packet to the dive */
 int send_packet(struct SCSI_packet *pkt, u16 drive, u16 size)
 {
 }
 
-/* */
+/* Read the datas for the drive of lba size */
 void *read_block(size_t lba)
 {
 }
